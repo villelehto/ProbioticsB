@@ -1,0 +1,65 @@
+#image_container {
+    width: 350px;
+    height: 200px;
+    float: center;
+    padding-top: -20px;
+  }
+  .image_in_grid {
+    position: relative;
+    width: 400px;
+    height: 300px;
+    float: left;
+    }
+  .image_in_grid img {
+    width: 80%;
+  }
+body {
+    background-image: linear-gradient(to right, #86607B , #1E1E31);
+  }
+
+img {
+    border-radius: 60px;
+    
+    }
+
+
+img {
+    display: block;
+    margin-left: 500;
+    margin-right: 400;
+    width: 80%;
+    }
+
+@font-face {
+    font-family: "Fabrik";
+    src: url('Fabrik/Fabrik-Bold.otf');
+    }
+@font-face {
+    font-family: "Moderat";
+    src: url('Moderat/Moderat-Regular.otf');
+    }
+
+
+h2 {
+    font-family: "Fabrik", sans-serif;
+    text-align: center; 
+    color: whitesmoke;
+    font-size: 50px;
+    font-style: normal;
+    padding-top: 50px;
+    }
+p   {
+    column-width: 300px;
+    margin-right: 400;
+    margin-left: 400;
+    font-family: "Moderat", sans-serif;
+    text-align: center;
+    color:whitesmoke;
+    font-size: 20px;
+    }
+
+
+.rectangle {
+    margin-left: 525px;
+    }
+

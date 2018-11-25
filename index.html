@@ -1,0 +1,114 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:700">
+  <link rel="stylesheet" href="default.css" >
+  <body> 
+	 <div id = "text_container">  
+	<h1>Hi You!</h1>
+	</div>
+      <style>
+.rectangle {
+  height: 5px;
+  width: 200px;
+  background-color: whitesmoke;
+}
+</style>
+</head>
+<body>
+
+<div class="rectangle"></div>
+    <p>Based on your symptoms this is the probiotic you should have:</p>
+	<div>
+    <div id = "text_container2">  
+	</div>
+    <p/>
+    <div id = "image_container">
+      <div id = "grid_view">
+        <div class = "image_in_grid" onclick="showFullImage(1)">
+          <img src = "img/01.png" />
+        </div>
+        <div class = "image_in_grid" onclick="showFullImage(2)">
+          <img src = "img/02.png" />
+        </div>
+<div class = "image_in_grid" onclick="showFullImage(3)">
+          <img src = "img/03.png" />
+        </div>
+<div class = "image_in_grid" onclick="showFullImage(4)">
+          <img src = "img/04.png" />
+        </div>
+</div>
+</div>
+
+<script>
+	
+    function showFullImage(image) {
+      var image_path = ("img/0" + image + ".png");
+document.getElementById('image_container').innerHTML = "<img src = '" + image_path + "' />";
+      console.log(image_path);
+}
+
+
+    function includetext(name) {
+		var textstring = ("Hi " + name)
+document.getElementById('text_container').innerHTML = "<h2> " + textstring + " </h2>";
+}
+
+    function probioticstext(number) {
+		var probiotics = ["Bificobacterium", "Butyrivibrio fibrisolvens", "Arthrobacter citreus", "Lactobacillus salivarius"];
+		var textstring = (probiotics[number-1])
+document.getElementById('text_container2').innerHTML = "<p>" + textstring + " </p>";
+}
+
+    function showGridView() {
+      var content_string = "<div id = 'grid_view'>\
+      <div class = 'image_in_grid' onclick='showFullImage(1)'>\
+      <img src ='img/02.png' />\
+      </div>\
+      <div class = 'image_in_grid' onclick='showFullImage(2)'>\
+      <img src = 'img/02.png' />\
+      </div>\
+      <div class = 'image_in_grid' onclick='showFullImage(3)'>\
+      <img src = 'img/02.png' />\
+      </div>\
+      <div class = 'image_in_grid' onclick='showFullImage(4)'>\
+      <img src = 'img/02.png' />\
+      </div>\
+      </div>";
+      document.getElementById('image_container').innerHTML = content_string;
+    }
+	
+function refresh() {
+      var xhttp = new XMLHttpRequest();
+	  var xhttp2 = new XMLHttpRequest();
+      xhttp.open("GET", "https://dog-pictures-4ef68.firebaseio.com/picture/number.json", true);
+      xhttp.send();
+      xhttp.addEventListener("readystatechange", processRequest, false);
+      xhttp2.open("GET", "https://dog-pictures-4ef68.firebaseio.com/picture/givenname.json", true);
+      xhttp2.send();
+      xhttp2.addEventListener("readystatechange", processRequest, false);
+function processRequest(e) {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+          var response = JSON.parse(xhttp.responseText);
+		  var response2 = JSON.parse(xhttp2.responseText);
+          var numberString = response.number;
+		  var namestring = response2.givenname;
+	
+if(numberString < 5 && numberString > 0) {
+			includetext(namestring);
+            showFullImage(numberString);
+			probioticstext(numberString) 
+          } else {
+            showLink();
+          }
+          console.log(numberString);
+        }
+}
+	  setTimeout(refresh, 1000);
+    }
+    refresh();
+    
+</script>
+
+</body>
+</head>
+<html>
